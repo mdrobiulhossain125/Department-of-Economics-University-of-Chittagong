@@ -101,9 +101,9 @@ export const AboutPage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <div className="rounded-xl overflow-hidden border border-slate-200 shadow-xs">
               <img
-                src="/assets/aistudio/image_79340deb.png"
+                src="/assets/aistudio/Gemini_Generated_Image_cz2uudcz2uudcz2u_f794b25e.jpg"
                 alt="Dr. Muhammad Yunus Bhaban"
                 className="w-full h-80 sm:h-96 object-cover"
                 referrerPolicy="no-referrer"

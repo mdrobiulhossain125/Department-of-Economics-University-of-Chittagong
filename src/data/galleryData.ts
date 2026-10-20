@@ -22,12 +22,22 @@ export const galleryData: GalleryItem[] = [
   {
     id: 'yunus-bhaban-main',
     titleEn: 'Dr. Muhammad Yunus Bhaban - Faculty of Social Sciences',
-    titleBn: 'ড. মুহাম্মদ ইউনূস ভবন - সমাজ বিজ্ঞান অনুষদ',
+    titleBn: 'ড. মুহাম্মদ ইউনূস ভবন - সমাজ বিজ্ঞান অনুষদ (প্রধান ভবন)',
+    category: 'campus',
+    imageUrl: '/assets/aistudio/Gemini_Generated_Image_cz2uudcz2uudcz2u_f794b25e.jpg',
+    captionEn: 'The landmark Dr. Muhammad Yunus Bhaban at the University of Chittagong campus, home to the Department of Economics honoring Nobel Laureate Prof. Muhammad Yunus.',
+    captionBn: 'চট্টগ্রাম বিশ্ববিদ্যালয়ের সবুজ চত্বরে ঐতিহাসিক ড. মুহাম্মদ ইউনূস ভবন (সমাজ বিজ্ঞান অনুষদ), যেখানে অর্থনীতি বিভাগ অবস্থিত।',
+    date: 'March 2026'
+  },
+  {
+    id: 'yunus-bhaban-perspective',
+    titleEn: 'Faculty of Social Sciences Complex & Greens',
+    titleBn: 'সমাজ বিজ্ঞান অনুষদ কমপ্লেক্স ও সবুজ চত্বর',
     category: 'campus',
     imageUrl: '/assets/aistudio/image_79340deb.png',
-    captionEn: 'The landmark Dr. Muhammad Yunus Bhaban at the University of Chittagong, home to the Department of Economics and honoring our former department head and Nobel Laureate.',
-    captionBn: 'চট্টগ্রাম বিশ্ববিদ্যালয়ের ঐতিহাসিক ড. মুহাম্মদ ইউনূস ভবন (সমাজ বিজ্ঞান অনুষদ), যেখানে অর্থনীতি বিভাগ অবস্থিত।',
-    date: 'March 2026'
+    captionEn: 'Architectural perspective of the faculty complex nestled among the scenic green hills of Chittagong University.',
+    captionBn: 'চট্টগ্রাম বিশ্ববিদ্যালয়ের সবুজ পাহাড়ঘেরা সমাজ বিজ্ঞান অনুষদ চত্বরের নান্দনিক দৃশ্য।',
+    date: 'February 2026'
   },
   {
     id: 'international-econ-conf',

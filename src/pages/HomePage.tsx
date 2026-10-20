@@ -52,9 +52,9 @@ export const HomePage: React.FC<HomePageProps> = ({ setActiveTab }) => {
             {/* Background Landmark Image with Eye-Smoothing Clean Gradient (No Blur) */}
             <div className="absolute inset-0">
               <img
-                src="/assets/aistudio/image_79340deb.png"
+                src="/assets/aistudio/Gemini_Generated_Image_cz2uudcz2uudcz2u_f794b25e.jpg"
                 alt="Dr. Muhammad Yunus Bhaban - Faculty of Social Sciences, University of Chittagong"
-                className="w-full h-full object-cover object-center brightness-90"
+                className="w-full h-full object-cover object-center brightness-95"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545] via-[#0B2545]/60 to-transparent"></div>
