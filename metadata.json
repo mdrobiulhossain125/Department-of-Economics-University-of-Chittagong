@@ -1,0 +1,6 @@
+{
+  "name": "CU Economics - Department of Economics, University of Chittagong",
+  "description": "Official portal of the Department of Economics, University of Chittagong. Academic programs, syllabus, faculty directory, research, student clubs, and event calendar in English and Bengali.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
