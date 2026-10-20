@@ -14,12 +14,12 @@ import {
   Calendar, 
   Bell, 
   ChevronRight, 
-  Sparkles,
-  MapPin,
-  Landmark,
+  MapPin, 
   Building,
   CheckCircle2,
-  ExternalLink
+  ExternalLink,
+  Sparkles,
+  ArrowUpRight
 } from 'lucide-react';
 import { NoticeModal } from '../components/NoticeModal';
 import { EventModal } from '../components/EventModal';
@@ -38,105 +38,60 @@ export const HomePage: React.FC<HomePageProps> = ({ setActiveTab }) => {
 
   // Chairman is Dr. Amirul Islam
   const chairman = facultyData.find(f => f.id === 'dr-amirul-islam') || facultyData[0];
+  const yesClub = studentClubs.find(c => c.id === 'yes-cu') || studentClubs[0];
+  const cueesa = studentClubs.find(c => c.id === 'cueesa') || studentClubs[1];
 
   return (
-    <div className="space-y-16 lg:space-y-24 pb-20 font-satoshi">
-      {/* HERO SECTION - Crisp Clean Minimal */}
-      <section className="relative bg-gradient-to-b from-blue-950 via-slate-900 to-slate-900 text-white overflow-hidden pt-8 pb-16 lg:py-20 border-b border-slate-800">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <div className="space-y-16 lg:space-y-24 pb-24 bg-white text-slate-900">
+      
+      {/* 1. CINEMATIC HERO (Stanford Style) */}
+      <section className="relative bg-[#0B2545] text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative min-h-[500px] lg:min-h-[580px] flex items-end">
             
-            {/* Left Column: Heading, Subtitle, Actions */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              {/* Kicker Tag */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-900/80 border border-blue-700/60 text-xs text-blue-200">
-                <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-                <span className="font-medium tracking-wide">{t.hero.kicker}</span>
+            {/* Background Landmark Image with Eye-Smoothing Clean Gradient (No Blur) */}
+            <div className="absolute inset-0">
+              <img
+                src="/assets/aistudio/image_79340deb.png"
+                alt="Dr. Muhammad Yunus Bhaban - Faculty of Social Sciences, University of Chittagong"
+                className="w-full h-full object-cover object-center brightness-90"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545] via-[#0B2545]/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-black/25"></div>
+            </div>
+
+            {/* Hero Content Overlay */}
+            <div className="relative z-10 p-6 sm:p-10 lg:p-14 max-w-4xl space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/20 text-xs text-white backdrop-blur-2xs">
+                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span className="font-medium tracking-wide uppercase text-2xs">
+                  {lang === 'en' ? 'Faculty of Social Sciences · Estd 1966' : 'সমাজ বিজ্ঞান অনুষদ · প্রতিষ্ঠিত ১৯৬৬'}
+                </span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-academic font-bold tracking-tight text-white leading-tight">
                 {t.hero.title}
               </h1>
 
-              {/* Subtitle */}
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl font-normal">
                 {t.hero.subtitle}
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   onClick={() => setActiveTab('academics')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-xs cursor-pointer"
+                  className="btn-stanford-white text-xs sm:text-sm py-2.5 px-6"
                 >
-                  <BookOpen className="w-4 h-4" />
                   <span>{t.hero.explorePrograms}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setActiveTab('faculty')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors cursor-pointer"
+                  className="btn-stanford-outline text-xs sm:text-sm py-2.5 px-6 border-white/30 text-white bg-black/30 hover:bg-white hover:text-[#0B2545] hover:border-white"
                 >
-                  <Users className="w-4 h-4 text-blue-400" />
                   <span>{t.hero.viewFaculty}</span>
                 </button>
-                <button
-                  onClick={() => setActiveTab('clubs')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span>{lang === 'en' ? 'YES Student Club' : 'ইয়েস স্টুডেন্ট ক্লাব'}</span>
-                </button>
-              </div>
-
-              {/* Key Highlights Sub-strip */}
-              <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/80 text-left">
-                <div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-amber-300 font-mono">1966</div>
-                  <div className="text-2xs text-slate-400">{t.estd}</div>
-                </div>
-                <div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-blue-400 font-mono">{facultyData.length}</div>
-                  <div className="text-2xs text-slate-400">{lang === 'en' ? 'Faculty Members' : 'অনুষদ সদস্য'}</div>
-                </div>
-                <div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono">1,200+</div>
-                  <div className="text-2xs text-slate-400">{lang === 'en' ? 'Enrolled Scholars' : 'অধ্যয়নরত শিক্ষার্থী'}</div>
-                </div>
-                <div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-purple-300 font-mono">YES</div>
-                  <div className="text-2xs text-slate-400">{lang === 'en' ? 'Official Student Club' : 'অফিশিয়াল ক্লাব'}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: User Uploaded Iconic Landmark Image */}
-            <div className="lg:col-span-5">
-              <div className="relative group rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-800">
-                <img
-                  src="/assets/aistudio/image_79340deb.png"
-                  alt="Dr. Muhammad Yunus Bhaban - Faculty of Social Sciences, University of Chittagong"
-                  className="w-full h-80 sm:h-96 lg:h-[420px] object-cover transition-transform duration-500 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Image overlay badge */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-5">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-950/80 border border-blue-700/60 text-amber-300 text-2xs font-semibold uppercase tracking-wider mb-2 w-fit backdrop-blur-xs">
-                    <Landmark className="w-3.5 h-3.5" />
-                    <span>{lang === 'en' ? 'Department Headquarters' : 'বিভাগীয় কার্যালয়'}</span>
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
-                    {t.buildingName}
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                    <span>{t.locationShort}</span>
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -144,72 +99,156 @@ export const HomePage: React.FC<HomePageProps> = ({ setActiveTab }) => {
         </div>
       </section>
 
-      {/* QUICK NOTICE TICKER & BREAKING ANNOUNCEMENTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-        <div className="bg-white rounded-xl shadow-md border border-slate-200/90 p-3 sm:p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3 shrink-0">
-            <span className="p-2 rounded-lg bg-rose-50 text-rose-700 font-bold flex items-center gap-2 text-xs uppercase tracking-wider">
-              <Bell className="w-4 h-4 text-rose-600" />
-              <span>{lang === 'en' ? 'Latest Notices' : 'জরুরি বিজ্ঞপ্তি'}</span>
-            </span>
-          </div>
-
-          <div className="flex-1 overflow-hidden w-full">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 text-xs">
-              {noticesData.slice(0, 2).map((notice) => (
-                <button
-                  key={notice.id}
-                  onClick={() => setSelectedNotice(notice)}
-                  className="text-left hover:text-blue-700 transition-colors py-1 sm:py-0 sm:px-3 first:pl-0 truncate max-w-full flex items-center gap-2 group cursor-pointer"
-                >
-                  <span className="text-slate-400 shrink-0 font-mono text-2xs">[{notice.date}]</span>
-                  <span className="font-semibold text-slate-800 group-hover:text-blue-700 truncate">
-                    {lang === 'en' ? notice.titleEn : notice.titleBn}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-
+      {/* 2. ADVANCING THE FRONTIER — CENTER EDITORIAL LEAD (Stanford Motif) */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4 pt-4">
+        <h2 className="text-2xl sm:text-4xl font-serif-academic font-bold text-[#0B2545]">
+          {lang === 'en' ? 'Advancing the Frontier' : 'অগ্রযাত্রার সীমানা পেরিয়ে'}
+        </h2>
+        <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          {lang === 'en'
+            ? 'At Chittagong University Department of Economics, a spirit of rigorous empirical discovery and analytical reasoning has shaped national policy, financial architecture, and global poverty alleviation since 1966.'
+            : 'চট্টগ্রাম বিশ্ববিদ্যালয় অর্থনীতি বিভাগ ১৯৬৬ সাল থেকে নিরলস জ্ঞানচর্চা, পরিমাণগত বিশ্লেষণ ও নীতিনির্ধারণী গবেষণার মাধ্যমে দেশের অর্থনীতিকে এগিয়ে নিয়ে যাচ্ছে।'
+          }
+        </p>
+        <div className="pt-2">
           <button
             onClick={() => setActiveTab('about')}
-            className="text-xs font-semibold text-blue-900 hover:text-blue-700 flex items-center gap-1 shrink-0 cursor-pointer self-end md:self-center"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0B2545] hover:text-[#133E7C] group border-b border-[#0B2545] pb-0.5"
+          >
+            <span>{lang === 'en' ? 'More about the Department of Economics' : 'বিভাগ সম্পর্কে বিস্তারিত জানুন'}</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      </section>
+
+      {/* 3. HIGH-IMPACT STAT BAND (Stanford Metric Style) */}
+      <section className="bg-[#0B2545] text-white py-12 border-y border-[#081B33]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="pt-4 md:pt-0">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif-academic font-bold text-white tracking-tight">1966</div>
+              <div className="text-xs uppercase tracking-wider text-slate-300 mt-1">{t.estd}</div>
+            </div>
+            <div className="pt-4 md:pt-0">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif-academic font-bold text-white tracking-tight">{facultyData.length}</div>
+              <div className="text-xs uppercase tracking-wider text-slate-300 mt-1">{lang === 'en' ? 'Faculty Members' : 'অনুষদ সদস্য'}</div>
+            </div>
+            <div className="pt-4 md:pt-0">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif-academic font-bold text-white tracking-tight">1,200+</div>
+              <div className="text-xs uppercase tracking-wider text-slate-300 mt-1">{lang === 'en' ? 'Scholars Enrolled' : 'অধ্যয়নরত শিক্ষার্থী'}</div>
+            </div>
+            <div className="pt-4 md:pt-0">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif-academic font-bold text-amber-300 tracking-tight">Nobel</div>
+              <div className="text-xs uppercase tracking-wider text-slate-300 mt-1">{lang === 'en' ? 'Peace Prize Legacy' : 'নোবেল শান্তি ঐতিহ্য'}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. DEPARTMENT NEWS & ANNOUNCEMENTS (Stanford Multi-Column News Layout) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-8">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-serif-academic font-bold text-[#0B2545]">
+              {lang === 'en' ? 'Department Announcements' : 'বিভাগীয় নোটিশ ও সংবাদ'}
+            </h2>
+          </div>
+          <button
+            onClick={() => setActiveTab('about')}
+            className="text-xs sm:text-sm font-semibold text-[#0B2545] hover:text-[#133E7C] inline-flex items-center gap-1 cursor-pointer"
           >
             <span>{t.notices.viewAll}</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Featured Notice Card (Left 5 Cols) */}
+          <div className="lg:col-span-5">
+            {noticesData[0] && (
+              <div 
+                onClick={() => setSelectedNotice(noticesData[0])}
+                className="group cursor-pointer border border-slate-200 rounded-xl overflow-hidden hover:border-slate-400 transition-all p-6 bg-slate-50/50 space-y-3"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-2xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 text-[#0B2545]">
+                    {noticesData[0].category}
+                  </span>
+                  <span className="text-2xs text-slate-500 font-mono">
+                    {noticesData[0].date}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-serif-academic font-bold text-slate-900 group-hover:text-[#0B2545] transition-colors leading-snug">
+                  {lang === 'en' ? noticesData[0].titleEn : noticesData[0].titleBn}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                  {lang === 'en' ? noticesData[0].contentEn : noticesData[0].contentBn}
+                </p>
+                <div className="pt-2">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0B2545] group-hover:underline">
+                    <span>{lang === 'en' ? 'Read full notice' : 'সম্পূর্ণ নোটিশ পড়ুন'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* List of Secondary Notices (Right 7 Cols) */}
+          <div className="lg:col-span-7 divide-y divide-slate-100">
+            {noticesData.slice(1, 4).map((notice) => (
+              <div 
+                key={notice.id}
+                onClick={() => setSelectedNotice(notice)}
+                className="py-4 first:pt-0 last:pb-0 group cursor-pointer hover:bg-slate-50/70 p-3 rounded-lg transition-colors flex items-start justify-between gap-4"
+              >
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xs uppercase tracking-wider font-semibold text-slate-500">
+                      {notice.category}
+                    </span>
+                    <span className="text-slate-300">·</span>
+                    <span className="text-2xs text-slate-400 font-mono">
+                      {notice.date}
+                    </span>
+                  </div>
+                  <h4 className="text-sm font-semibold text-slate-900 group-hover:text-[#0B2545] transition-colors leading-snug">
+                    {lang === 'en' ? notice.titleEn : notice.titleBn}
+                  </h4>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#0B2545] group-hover:translate-x-0.5 transition-all shrink-0 mt-1" />
+              </div>
+            ))}
+          </div>
+
+        </div>
       </section>
 
-      {/* CHAIRMAN'S MESSAGE & NOBEL HERITAGE ROW */}
+      {/* 5. CHAIRMAN'S WELCOME & THE NOBEL LEGACY (Stanford Split Editorial) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Chairman's Welcome */}
-          <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-900 bg-blue-50 px-2.5 py-1 rounded">
-                  {t.chairman.kicker}
-                </span>
-                <span className="text-xs text-slate-400 font-mono">{t.estd}</span>
-              </div>
-
-              <blockquote className="text-sm sm:text-base text-slate-700 italic leading-relaxed mb-6 font-academic">
+          {/* Chairman's Message */}
+          <div className="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 sm:p-10 flex flex-col justify-between">
+            <div className="space-y-4">
+              <span className="text-2xs font-bold uppercase tracking-widest text-slate-500 block">
+                {t.chairman.kicker}
+              </span>
+              <blockquote className="text-base sm:text-lg font-serif-academic italic text-slate-800 leading-relaxed">
                 "{t.chairman.quote}"
               </blockquote>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 {t.chairman.fullMessage}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <div className="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
               <div>
-                <h4 className="font-bold text-slate-900 text-sm sm:text-base">
+                <h4 className="font-serif-academic font-bold text-slate-900 text-base">
                   {lang === 'en' ? chairman.nameEn : chairman.nameBn}
                 </h4>
-                <p className="text-xs text-blue-900 font-medium">
+                <p className="text-xs text-[#0B2545] font-semibold">
                   {lang === 'en' ? chairman.designationEn : chairman.designationBn}
                 </p>
                 <p className="text-2xs text-slate-500 mt-0.5">
@@ -218,43 +257,37 @@ export const HomePage: React.FC<HomePageProps> = ({ setActiveTab }) => {
               </div>
               <button
                 onClick={() => setActiveTab('faculty')}
-                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer"
+                className="btn-stanford-outline text-xs py-2 px-4"
               >
-                {lang === 'en' ? 'Faculty Profile' : 'প্রোফাইল দেখুন'}
+                <span>{lang === 'en' ? 'Faculty Directory' : 'শিক্ষক তালিকা'}</span>
               </button>
             </div>
           </div>
 
-          {/* Nobel Peace Prize & Yunus Heritage Card */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-blue-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xs relative overflow-hidden border border-slate-800">
-            <div className="absolute top-0 right-0 translate-x-6 -translate-y-6 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
-
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-amber-400/20 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-amber-400/30">
-                <Award className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'Historic Milestone' : 'ঐতিহাসিক মাইলফলক'}</span>
-              </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-3">
+          {/* Yunus Heritage Block */}
+          <div className="lg:col-span-5 bg-[#0B2545] text-white rounded-xl p-6 sm:p-10 flex flex-col justify-between">
+            <div className="space-y-4">
+              <span className="inline-block text-2xs font-bold uppercase tracking-widest text-amber-300">
+                {lang === 'en' ? 'Historical Landmark' : 'ঐতিহাসিক মাইলফলক'}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif-academic font-bold text-white leading-snug">
                 {t.legacy.title}
               </h3>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
                 {t.legacy.body}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-              <div className="text-xs text-amber-200">
-                <span className="font-bold">{lang === 'en' ? 'Jobra Village Experiment' : 'জোবরা গ্রামের সূচনা'}</span>
-                <span className="block text-2xs text-slate-400">{lang === 'en' ? 'Hathazari, Chattogram' : 'হাটহাজারী, চট্টগ্রাম'}</span>
-              </div>
+            <div className="pt-6 border-t border-white/10 mt-6 flex items-center justify-between">
+              <span className="text-2xs text-slate-300">
+                Jobra Village · Hathazari, Chattogram
+              </span>
               <button
                 onClick={() => setActiveTab('about')}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-white bg-blue-800 hover:bg-blue-700 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                className="btn-stanford-white text-xs py-2 px-4 text-[#0B2545]"
               >
                 <span>{lang === 'en' ? 'Read History' : 'ইতিহাস পড়ুন'}</span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
@@ -262,226 +295,209 @@ export const HomePage: React.FC<HomePageProps> = ({ setActiveTab }) => {
         </div>
       </section>
 
-      {/* ACADEMIC PROGRAMS GRID */}
+      {/* 6. ACADEMIC PROGRAM PATHWAYS (Stanford Editorial Cards) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-900 bg-blue-50 px-2.5 py-1 rounded">
-            {lang === 'en' ? 'Degree Pathways' : 'ডিগ্রি প্রোগ্রাম'}
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2 tracking-tight">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <h2 className="text-2xl sm:text-3xl font-serif-academic font-bold text-[#0B2545]">
             {t.programs.sectionTitle}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
+          <p className="text-xs sm:text-sm text-slate-600">
             {t.programs.sectionSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* BSS Honours */}
-          <div className="bg-white rounded-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xs transition-all">
+          <div className="border border-slate-200 rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition-all bg-white">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-900 flex items-center justify-center font-bold">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900">
+              <span className="text-2xs font-mono font-bold uppercase text-slate-400 block">
+                Undergraduate
+              </span>
+              <h3 className="text-lg font-serif-academic font-bold text-slate-900 leading-snug">
                 {t.programs.bss.title}
               </h3>
-              <div className="flex items-center gap-2 text-xs text-blue-900 font-medium">
-                <span>{t.programs.bss.duration}</span>
-                <span aria-hidden="true">·</span>
-                <span>{t.programs.bss.credits}</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#0B2545] font-semibold">
+                {t.programs.bss.duration} · {t.programs.bss.credits}
+              </p>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
                 {t.programs.bss.desc}
               </p>
             </div>
             <div className="pt-6 border-t border-slate-100 mt-6">
               <button
                 onClick={() => setActiveTab('academics')}
-                className="w-full py-2 px-3 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="btn-stanford-outline text-xs py-2 w-full justify-between"
               >
                 <span>{t.programs.viewCurriculum}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
           {/* MSS Master of Social Sciences */}
-          <div className="bg-white rounded-xl border border-blue-200 p-6 flex flex-col justify-between shadow-2xs hover:border-blue-400 transition-all">
+          <div className="border border-[#0B2545] rounded-xl p-6 flex flex-col justify-between shadow-xs bg-white">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-900 text-white flex items-center justify-center font-bold">
-                <BookOpen className="w-5 h-5 text-amber-300" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900">
+              <span className="text-2xs font-mono font-bold uppercase text-[#0B2545] block">
+                Postgraduate
+              </span>
+              <h3 className="text-lg font-serif-academic font-bold text-slate-900 leading-snug">
                 {t.programs.mss.title}
               </h3>
-              <div className="flex items-center gap-2 text-xs text-blue-900 font-medium">
-                <span>{t.programs.mss.duration}</span>
-                <span aria-hidden="true">·</span>
-                <span>{t.programs.mss.credits}</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#0B2545] font-semibold">
+                {t.programs.mss.duration} · {t.programs.mss.credits}
+              </p>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
                 {t.programs.mss.desc}
               </p>
             </div>
             <div className="pt-6 border-t border-slate-100 mt-6">
               <button
                 onClick={() => setActiveTab('academics')}
-                className="w-full py-2 px-3 text-xs font-semibold text-white bg-blue-900 hover:bg-blue-800 rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="btn-stanford-primary text-xs py-2 w-full justify-between"
               >
                 <span>{t.programs.viewCurriculum}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
           {/* MPhil & PhD Doctoral */}
-          <div className="bg-white rounded-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:border-blue-400 hover:shadow-xs transition-all">
+          <div className="border border-slate-200 rounded-xl p-6 flex flex-col justify-between hover:border-slate-400 transition-all bg-white">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold">
-                <Award className="w-5 h-5 text-blue-900" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900">
+              <span className="text-2xs font-mono font-bold uppercase text-slate-400 block">
+                Doctoral & Advanced
+              </span>
+              <h3 className="text-lg font-serif-academic font-bold text-slate-900 leading-snug">
                 {t.programs.mphil.title}
               </h3>
-              <div className="flex items-center gap-2 text-xs text-blue-900 font-medium">
-                <span>{t.programs.mphil.duration}</span>
-                <span aria-hidden="true">·</span>
-                <span>{t.programs.mphil.credits}</span>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#0B2545] font-semibold">
+                {t.programs.mphil.duration} · {t.programs.mphil.credits}
+              </p>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
                 {t.programs.mphil.desc}
               </p>
             </div>
             <div className="pt-6 border-t border-slate-100 mt-6">
               <button
                 onClick={() => setActiveTab('academics')}
-                className="w-full py-2 px-3 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="btn-stanford-outline text-xs py-2 w-full justify-between"
               >
                 <span>{t.programs.viewCurriculum}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* STUDENT CLUBS & ALUMNI SPOTLIGHT - YES & CUEESA */}
+      {/* 7. STUDENT CLUBS & ALUMNI — YES & CUEESA (Clean Stanford Style) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* YES Card */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-blue-200/80 shadow-2xs flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-2xs font-bold uppercase tracking-wider text-blue-900 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">
-                  {lang === 'en' ? "Official Student Club" : "অফিশিয়াল শিক্ষার্থী ক্লাব"}
-                </span>
-                <span className="text-2xs font-mono text-slate-400">CU Economics</span>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-slate-900">
-                  Young Economists' Society – YES
-                </h3>
-                <p className="text-xs text-slate-500 italic mt-0.5">
-                  "Empowering Aspiring Economists to Grow & Succeed Together"
-                </p>
-              </div>
-
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {lang === 'en'
-                  ? "YES is the 'Official Student Club' of the Department of Economics, University of Chittagong dedicated to providing a dynamic platform that empowers aspiring economists to grow and succeed together."
-                  : "ইয়াং ইকোনমিস্টস সোসাইটি (YES) চট্টগ্রাম বিশ্ববিদ্যালয় অর্থনীতি বিভাগের অফিশিয়াল শিক্ষার্থী ক্লাব, যা শিক্ষার্থীদের দক্ষতা বৃদ্ধি ও পারস্পরিক সাফল্যে কাজ করে।"
-                }
-              </p>
-
-              <div className="p-3 rounded-lg bg-slate-50 text-2xs space-y-1 text-slate-600 border border-slate-100">
-                <p>Email: <a href="mailto:yes.cu.bd@gmail.com" className="text-blue-900 font-semibold hover:underline">yes.cu.bd@gmail.com</a></p>
-                <p>Campus: University of Chittagong, Chittagong, Bangladesh, 4331</p>
-              </div>
+        <div className="border-t border-slate-200 pt-12">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+            <div>
+              <span className="text-2xs font-bold uppercase tracking-widest text-slate-500 block">
+                {lang === 'en' ? 'Community & Leadership' : 'সম্প্রদায় ও নেতৃত্ব'}
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-serif-academic font-bold text-[#0B2545] mt-1">
+                {lang === 'en' ? "Young Economists' Society (YES) & CUEESA" : "ইয়াং ইকোনমিস্টস সোসাইটি (YES) ও CUEESA"}
+              </h2>
             </div>
-
-            <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <a 
-                  href="https://www.facebook.com/yes.eco.cu" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-xs text-blue-700 hover:text-blue-900 font-semibold"
-                >
-                  Facebook Page
-                </a>
-                <span>·</span>
-                <a 
-                  href="https://www.linkedin.com/company/yes-cu/" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-xs text-blue-900 hover:text-blue-950 font-semibold"
-                >
-                  LinkedIn
-                </a>
-              </div>
-              <button
-                onClick={() => setActiveTab('clubs')}
-                className="px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-900 hover:bg-blue-800 rounded-lg transition-colors cursor-pointer"
-              >
-                {lang === 'en' ? 'Club Details' : 'বিস্তারিত'}
-              </button>
-            </div>
+            <button
+              onClick={() => setActiveTab('clubs')}
+              className="btn-stanford-outline text-xs py-2 px-4.5"
+            >
+              <span>{lang === 'en' ? 'All Club Details' : 'সকল ক্লাব বিবরণ'}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
 
-          {/* CUEESA Alumni Card */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-2xs font-bold uppercase tracking-wider text-slate-800 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">
-                  {lang === 'en' ? "Alumni Association" : "অ্যালামনাই অ্যাসোসিয়েশন"}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* YES Club Card */}
+            <div className="border border-slate-200 rounded-xl p-6 sm:p-8 space-y-4 bg-slate-50/40 hover:bg-slate-50 transition-colors flex flex-col justify-between">
+              <div className="space-y-3">
+                <span className="text-2xs font-semibold px-2 py-0.5 rounded bg-blue-100 text-[#0B2545] inline-block uppercase">
+                  {lang === 'en' ? 'Official Student Club' : 'অফিশিয়াল শিক্ষার্থী ক্লাব'}
                 </span>
-                <span className="text-2xs font-mono text-slate-400">2K Followers</span>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-slate-900">
-                  Chittagong University Ex-Economics Students Association (CUEESA)
+                <h3 className="text-xl font-serif-academic font-bold text-slate-900">
+                  {yesClub.nameEn}
                 </h3>
-                <p className="text-xs text-slate-500 italic mt-0.5">
-                  "Connecting Generations of Economists Worldwide"
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  {yesClub.descriptionEn}
                 </p>
+                <div className="text-2xs text-slate-500 space-y-0.5 pt-1">
+                  <p>Email: <a href="mailto:yes.cu.bd@gmail.com" className="text-[#0B2545] font-semibold hover:underline">yes.cu.bd@gmail.com</a></p>
+                  <p>{yesClub.locationEn}</p>
+                </div>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {lang === 'en'
-                  ? 'A vibrant community and organization for former students of the Department of Economics, University of Chittagong.'
-                  : 'চট্টগ্রাম বিশ্ববিদ্যালয় অর্থনীতি বিভাগের প্রাক্তন শিক্ষার্থীদের সুদৃঢ় সম্প্রদায় ও সংগঠন।'
-                }
-              </p>
-
-              <div className="p-3 rounded-lg bg-slate-50 text-2xs space-y-1 text-slate-600 border border-slate-100">
-                <p>Office: Akram Tower (12th Floor), 15/5 Syed Nazrul Islam Sarak, Bijoynagar, Dhaka-1000</p>
-                <p>Website: <a href="https://cueesa.org" target="_blank" rel="noreferrer" className="text-blue-900 font-semibold hover:underline">cueesa.org</a></p>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <div className="flex items-center gap-3 text-xs">
+                  <a href={yesClub.facebook} target="_blank" rel="noreferrer" className="text-blue-700 hover:text-blue-900 font-semibold">
+                    Facebook
+                  </a>
+                  <span>·</span>
+                  <a href={yesClub.linkedin} target="_blank" rel="noreferrer" className="text-[#0B2545] hover:underline font-semibold">
+                    LinkedIn
+                  </a>
+                </div>
+                <button
+                  onClick={() => setActiveTab('clubs')}
+                  className="btn-stanford-primary text-xs py-1.5 px-3.5"
+                >
+                  <span>{lang === 'en' ? 'Join YES' : 'যোগ দিন'}</span>
+                </button>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between">
-              <a 
-                href="https://www.facebook.com/cueesa" 
-                target="_blank" 
-                rel="noreferrer"
-                className="text-xs text-blue-700 hover:text-blue-900 font-semibold inline-flex items-center gap-1"
-              >
-                <span>CUEESA Facebook</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-              <button
-                onClick={() => setActiveTab('clubs')}
-                className="px-3.5 py-1.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
-              >
-                {lang === 'en' ? 'Alumni Info' : 'অ্যালামনাই তথ্য'}
-              </button>
+            {/* CUEESA Card */}
+            <div className="border border-slate-200 rounded-xl p-6 sm:p-8 space-y-4 bg-slate-50/40 hover:bg-slate-50 transition-colors flex flex-col justify-between">
+              <div className="space-y-3">
+                <span className="text-2xs font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-800 inline-block uppercase">
+                  {lang === 'en' ? 'Alumni Association' : 'অ্যালামনাই অ্যাসোসিয়েশন'}
+                </span>
+                <h3 className="text-xl font-serif-academic font-bold text-slate-900">
+                  {cueesa.nameEn}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  {cueesa.descriptionEn}
+                </p>
+                <div className="text-2xs text-slate-500 space-y-0.5 pt-1">
+                  <p>Office: {cueesa.locationEn}</p>
+                  <p>Website: <a href="https://cueesa.org" target="_blank" rel="noreferrer" className="text-[#0B2545] font-semibold hover:underline">cueesa.org</a></p>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <a 
+                  href={cueesa.facebook} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="text-xs text-blue-700 hover:text-blue-900 font-semibold inline-flex items-center gap-1"
+                >
+                  <span>CUEESA Facebook</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <button
+                  onClick={() => setActiveTab('clubs')}
+                  className="btn-stanford-outline text-xs py-1.5 px-3.5"
+                >
+                  <span>{lang === 'en' ? 'Alumni Network' : 'অ্যালামনাই তথ্য'}</span>
+                </button>
+              </div>
             </div>
+
           </div>
+        </div>
+      </section>
 
+      {/* 8. EDITORIAL PULL QUOTE (Stanford Classical Quote Style) */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center py-6">
+        <blockquote className="text-xl sm:text-2xl lg:text-3xl font-serif-academic italic text-slate-800 leading-relaxed">
+          "The culture of economics at the University of Chittagong is defined by our shared commitment to pursuing empirical truth, challenging assumptions, and embracing inclusive policy."
+        </blockquote>
+        <div className="text-xs uppercase tracking-widest text-slate-500 mt-4">
+          — Dr. Amirul Islam, Chairman & Professor, Department of Economics
         </div>
       </section>
 

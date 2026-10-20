@@ -9,8 +9,7 @@ import {
   MapPin, 
   GraduationCap, 
   ChevronRight,
-  Sparkles,
-  BookOpen
+  ArrowRight
 } from 'lucide-react';
 
 export const FacultyPage: React.FC = () => {
@@ -42,19 +41,19 @@ export const FacultyPage: React.FC = () => {
   });
 
   return (
-    <div className="space-y-12 pb-20 font-satoshi">
-      {/* Header Banner - Minimal clean */}
-      <section className="bg-gradient-to-b from-blue-950 via-slate-900 to-slate-900 text-white py-14 border-b border-slate-800">
+    <div className="space-y-12 pb-24 bg-white text-slate-900">
+      {/* Stanford-style Header Banner */}
+      <section className="bg-[#0B2545] text-white py-14 border-b border-[#081B33]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-900/80 text-blue-200 uppercase tracking-wider inline-flex items-center gap-1.5 border border-blue-700/50">
-              <Users className="w-3.5 h-3.5 text-blue-300" />
+            <span className="text-2xs font-semibold px-3 py-1 rounded-full bg-white/10 text-slate-200 uppercase tracking-widest inline-flex items-center gap-1.5 border border-white/10">
+              <Users className="w-3.5 h-3.5 text-blue-200" />
               <span>{lang === 'en' ? 'Faculty Directory' : 'শিক্ষক পরিচিতি'}</span>
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-academic font-bold tracking-tight text-white">
               {lang === 'en' ? 'Faculty Members & Research Interests' : 'সম্মানিত শিক্ষকমণ্ডলী ও গবেষণা ক্ষেত্র'}
             </h1>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
               {lang === 'en'
                 ? 'Department of Economics, University of Chittagong — Distinguished professors, associate professors, assistant professors, and lecturers.'
                 : 'চট্টগ্রাম বিশ্ববিদ্যালয় অর্থনীতি বিভাগের অধ্যাপক, সহযোগী অধ্যাপক, সহকারী অধ্যাপক ও প্রভাষকবৃন্দের তালিকা ও তাদের গবেষণার ক্ষেত্রসমূহ।'
@@ -64,25 +63,25 @@ export const FacultyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Filter and Search Bar - Clean Minimal */}
+      {/* Filter and Search Bar - Smart Pill Tabs & Minimal Inputs */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-3 sm:p-4 rounded-xl border border-slate-200/80 shadow-2xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
           
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1 overflow-x-auto pb-1 max-w-full">
+          {/* Smart Pill Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
             {filterTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setDesignationFilter(tab.id)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                className={`px-4 py-2 text-xs font-semibold rounded-full transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                   designationFilter === tab.id
-                    ? 'bg-blue-900 text-white shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-950 hover:bg-slate-100/80'
+                    ? 'bg-[#0B2545] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/70'
                 }`}
               >
                 <span>{lang === 'en' ? tab.labelEn : tab.labelBn}</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-2xs ${
-                  designationFilter === tab.id ? 'bg-blue-800 text-blue-100' : 'bg-slate-200/70 text-slate-600'
+                <span className={`px-1.5 py-0.2 rounded-full text-2xs font-mono ${
+                  designationFilter === tab.id ? 'bg-[#133E7C] text-white' : 'bg-slate-200 text-slate-600'
                 }`}>
                   {tab.count}
                 </span>
@@ -90,57 +89,51 @@ export const FacultyPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Search Box */}
-          <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          {/* Clean Search Input */}
+          <div className="relative w-full md:w-80">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder={lang === 'en' ? 'Search by name or research topic...' : 'নাম বা গবেষণা ক্ষেত্র দিয়ে অনুসন্ধান...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-colors"
+              className="w-full pl-9 pr-4 py-2 text-xs rounded-full border border-slate-300 bg-white focus:outline-hidden focus:border-[#0B2545] focus:ring-1 focus:ring-[#0B2545] transition-colors"
             />
           </div>
 
         </div>
       </section>
 
-      {/* Faculty Cards Grid - Spacious, Clean Minimal */}
+      {/* Faculty Cards Grid - Stanford Clean Editorial Style */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredFaculty.map((member) => (
             <div
               key={member.id}
               onClick={() => setSelectedFaculty(member)}
-              className="group bg-white rounded-xl border border-slate-200/90 hover:border-blue-400 p-5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between cursor-pointer"
+              className="group bg-white rounded-xl border border-slate-200 hover:border-[#0B2545] p-6 transition-all flex flex-col justify-between cursor-pointer hover:shadow-md"
             >
-              <div className="space-y-3.5">
-                {/* Header row */}
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-11 h-11 rounded-lg bg-blue-50 text-blue-900 flex items-center justify-center font-bold text-base border border-blue-100 shrink-0 group-hover:bg-blue-900 group-hover:text-white transition-colors">
-                      <GraduationCap className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-slate-900 leading-snug group-hover:text-blue-900 transition-colors">
-                        {lang === 'en' ? member.nameEn : member.nameBn}
-                      </h3>
-                      <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                        <span className="text-2xs font-semibold text-blue-900 bg-blue-50 px-2 py-0.5 rounded">
-                          {lang === 'en' ? member.designationEn : member.designationBn}
-                        </span>
-                        {member.onStudyLeave && (
-                          <span className="text-2xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-                            {lang === 'en' ? 'Study Leave' : 'শিক্ষা ছুটিতে'}
-                          </span>
-                        )}
-                      </div>
-                    </div>
+              <div className="space-y-4">
+                {/* Header */}
+                <div>
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                    <span className="text-2xs font-bold uppercase tracking-wider text-[#0B2545] bg-blue-50 px-2 py-0.5 rounded">
+                      {lang === 'en' ? member.designationEn : member.designationBn}
+                    </span>
+                    {member.onStudyLeave && (
+                      <span className="text-2xs font-semibold text-amber-900 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                        {lang === 'en' ? 'Study Leave' : 'শিক্ষা ছুটিতে'}
+                      </span>
+                    )}
                   </div>
+
+                  <h3 className="text-lg font-serif-academic font-bold text-slate-900 group-hover:text-[#0B2545] transition-colors leading-snug">
+                    {lang === 'en' ? member.nameEn : member.nameBn}
+                  </h3>
                 </div>
 
                 {/* Email and Office info */}
-                <div className="space-y-1 text-2xs text-slate-600 pt-1">
+                <div className="space-y-1 text-2xs text-slate-600">
                   <div className="flex items-center gap-1.5 truncate">
                     <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                     <span className="truncate">{member.email}</span>
@@ -160,7 +153,7 @@ export const FacultyPage: React.FC = () => {
                     {(lang === 'en' ? member.specializationEn : member.specializationBn).map((item, idx) => (
                       <span 
                         key={idx}
-                        className="text-2xs px-2 py-0.8 rounded-md bg-slate-100/80 text-slate-700 font-medium border border-slate-200/50"
+                        className="text-2xs px-2 py-0.5 rounded bg-slate-50 text-slate-700 font-medium border border-slate-200"
                       >
                         {item}
                       </span>
@@ -169,12 +162,12 @@ export const FacultyPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom Card Footer */}
-              <div className="pt-3 border-t border-slate-100 mt-4 flex items-center justify-between text-2xs text-blue-900 font-semibold">
+              {/* Card Footer Button */}
+              <div className="pt-4 border-t border-slate-100 mt-5 flex items-center justify-between text-xs font-semibold text-[#0B2545]">
                 <span>{lang === 'en' ? 'Department of Economics' : 'অর্থনীতি বিভাগ'}</span>
-                <span className="inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
-                  <span>{lang === 'en' ? 'Profile' : 'বিস্তারিত'}</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                  <span>{lang === 'en' ? 'View Profile' : 'প্রোফাইল'}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
             </div>
@@ -182,7 +175,7 @@ export const FacultyPage: React.FC = () => {
         </div>
 
         {filteredFaculty.length === 0 && (
-          <div className="p-12 text-center bg-white rounded-xl border border-slate-200 text-slate-500 text-xs">
+          <div className="p-16 text-center bg-slate-50 rounded-xl border border-slate-200 text-slate-500 text-sm font-serif-academic">
             {lang === 'en'
               ? 'No faculty member found matching your query.'
               : 'কোনো শিক্ষকের তথ্য পাওয়া যায়নি।'
